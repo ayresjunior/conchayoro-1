@@ -22,9 +22,10 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
       AWS_EC2_METADATA_DISABLED: true
+      BUCKET: ${{ BUCKET }}
     steps:
     - uses: actions/download-artifact@v2
       with:
         name: deploy
         path: index.html
-    - run: aws s3 cp index.html s3://devops-cyo --recursive --acl public-read
+    - run: aws s3 cp index.html s3://$BUCKET --recursive --acl public-read
