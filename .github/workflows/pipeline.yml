@@ -2,7 +2,7 @@ name: conchayoro-pipeline
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ “main” ]
 
 jobs:
   build:
@@ -12,7 +12,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: deploy
-        path: README.md
+        path: index.html
 
   deploy:
     runs-on: ubuntu-latest
@@ -26,5 +26,5 @@ jobs:
     - uses: actions/download-artifact@v2
       with:
         name: deploy
-        path: README.md
-    - run: aws s3 cp README.md s3://devops-cyo --recursive --acl public-read  
+        path: index.html
+    - run: aws s3 cp index.html s3://devops-cyo --recursive --acl public-read
